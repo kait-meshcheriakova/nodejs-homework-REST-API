@@ -4,6 +4,7 @@ import {
   isEmptyBody,
   isValidId,
   isEmptyFavorite,
+  authenticate,
 } from "../../middlewares/index.js";
 import { validateBody } from "../../decorators/index.js";
 import {
@@ -13,7 +14,7 @@ import {
 } from "../../models/Contact.js";
 
 const contactsRouter = express.Router();
-
+contactsRouter.use(authenticate);
 contactsRouter.get("/", contactsController.listContacts);
 
 contactsRouter.get("/:id", isValidId, contactsController.getContactById);
